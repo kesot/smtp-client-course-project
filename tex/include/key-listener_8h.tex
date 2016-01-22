@@ -1,0 +1,24 @@
+\hypertarget{key-listener_8h}{\subsection{Файл include/key-\/listener.h}
+\label{key-listener_8h}\index{include/key-\/listener.\-h@{include/key-\/listener.\-h}}
+}
+
+
+Ожидание сигнала для завершения программы  
+
+
+\subsubsection*{Функции}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{key-listener_8h_afce84267d242a67489ca201c43c8cae6}{int {\bfseries keyboard\-\_\-listener\-\_\-fork} ()}\label{key-listener_8h_afce84267d242a67489ca201c43c8cae6}
+
+\item 
+\hypertarget{key-listener_8h_a0542378d05d3c52577c6f23db16bea6b}{int {\bfseries keyboard\-\_\-listener\-\_\-final} ()}\label{key-listener_8h_a0542378d05d3c52577c6f23db16bea6b}
+
+\item 
+\hypertarget{key-listener_8h_a25d43c3904f4a26b458c753fd7d83c26}{int {\bfseries quit\-\_\-key\-\_\-pressed} ()}\label{key-listener_8h_a25d43c3904f4a26b458c753fd7d83c26}
+
+\end{DoxyCompactItemize}
+
+
+\subsubsection{Подробное описание}
+Ожидание сигнала для завершения программы Ожидание символа 'Q' ведется в отдельном потоке. При нажатии на эту клавишу основному процессу посылается сингла о том, что выполнение программы пора прекратить. Проверка на завершение следует производить через вызов функции quit\-\_\-key\-\_\-pressed(). 

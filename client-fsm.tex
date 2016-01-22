@@ -1,0 +1,82 @@
+\documentclass{article}
+\usepackage[x11names, rgb]{xcolor}
+\usepackage[utf8]{inputenc}
+\usepackage{tikz}
+\usetikzlibrary{snakes,arrows,shapes}
+\usepackage{amsmath}
+%
+%
+
+\usepackage[active,tightpage]{preview}
+\PreviewEnvironment{tikzpicture}
+\setlength\PreviewBorder{0pt}%
+
+%
+
+\begin{document}
+\pagestyle{empty}
+%
+%
+%
+
+\enlargethispage{100cm}
+% Start of code
+\begin{tikzpicture}[>=latex',line join=bevel,]
+%%
+\node (mailfrom) at (115bp,352bp) [draw,ellipse] {mailfrom};
+  \node (quit) at (192bp,123bp) [draw,ellipse] {quit};
+  \node (invalid) at (115bp,10bp) [draw,ellipse] {invalid};
+  \node (init) at (32bp,464bp) [draw,ellipse] {init};
+  \node (done) at (214bp,66bp) [draw,ellipse] {done};
+  \node (rcptto) at (115bp,295bp) [draw,ellipse] {rcptto};
+  \node (helo) at (115bp,408bp) [draw,ellipse] {helo};
+  \node (data) at (144bp,236bp) [draw,ellipse] {data};
+  \node (datastr) at (183bp,180bp) [draw,ellipse] {datastr};
+  \draw [->] (datastr) ..controls (178.95bp,155.14bp) and (171.73bp,127.16bp)  .. (154bp,112bp) .. controls (143.19bp,102.75bp) and (132.19bp,114.86bp)  .. (123bp,104bp) .. controls (113.88bp,93.211bp) and (113.47bp,53.968bp)  .. (invalid);
+  \definecolor{strokecol}{rgb}{0.0,0.0,0.0};
+  \pgfsetstrokecolor{strokecol}
+  \draw (146bp,94bp) node {timeout};
+  \draw [->] (rcptto) ..controls (140.75bp,299.97bp) and (145bp,298.23bp)  .. (145bp,295bp) .. controls (145bp,294.4bp) and (144.85bp,293.84bp)  .. (rcptto);
+  \draw (160.5bp,295bp) node {r250};
+  \draw [->] (datastr) ..controls (189.34bp,192.58bp) and (190.4bp,195.33bp)  .. (191bp,198bp) .. controls (201.47bp,244.85bp) and (213.12bp,263.93bp)  .. (190bp,306bp) .. controls (180.86bp,322.64bp) and (162.75bp,333.76bp)  .. (mailfrom);
+  \draw (219.5bp,265bp) node {r250};
+  \draw [->] (helo) ..controls (115bp,390.7bp) and (115bp,381.1bp)  .. (mailfrom);
+  \draw (130.5bp,380bp) node {r250};
+  \draw [->] (data) ..controls (149.87bp,207.54bp) and (155.24bp,166.31bp)  .. (135bp,142bp) .. controls (126.72bp,132.06bp) and (114.79bp,144.33bp)  .. (107bp,134bp) .. controls (101.11bp,126.19bp) and (106.61bp,121.77bp)  .. (107bp,112bp) .. controls (108.13bp,83.511bp) and (111.03bp,50.608bp)  .. (invalid);
+  \draw (130bp,123bp) node {timeout};
+  \draw [->] (mailfrom) ..controls (80.514bp,334.73bp) and (57bp,318.62bp)  .. (57bp,296bp) .. controls (57bp,296bp) and (57bp,296bp)  .. (57bp,65bp) .. controls (57bp,45.794bp) and (74.248bp,31.476bp)  .. (invalid);
+  \draw (80bp,180bp) node {timeout};
+  \draw [->] (init) ..controls (14.783bp,446.09bp) and (0bp,427.96bp)  .. (0bp,409bp) .. controls (0bp,409bp) and (0bp,409bp)  .. (0bp,65bp) .. controls (0bp,29.12bp) and (46.435bp,17.035bp)  .. (invalid);
+  \draw (23bp,236bp) node {timeout};
+  \draw [->] (quit) ..controls (185.09bp,103.3bp) and (179.03bp,91.267bp)  .. (170bp,84bp) .. controls (160.91bp,76.684bp) and (153.37bp,84.122bp)  .. (145bp,76bp) .. controls (128.75bp,60.244bp) and (138.78bp,47.898bp)  .. (128bp,28bp) .. controls (127.95bp,27.91bp) and (127.9bp,27.82bp)  .. (invalid);
+  \draw (168bp,66bp) node {timeout};
+  \draw [->] (init) ..controls (55.108bp,447.97bp) and (78.984bp,432.43bp)  .. (helo);
+  \draw (104.5bp,436bp) node {r220};
+  \draw [->] (datastr) ..controls (185.64bp,162.89bp) and (187.27bp,152.89bp)  .. (quit);
+  \draw (211.5bp,152bp) node {no mail};
+  \draw [->] (rcptto) ..controls (123.89bp,276.52bp) and (129.91bp,264.69bp)  .. (data);
+  \draw (157bp,265bp) node {no rcpt};
+  \draw [->] (mailfrom) ..controls (115bp,334.8bp) and (115bp,324.64bp)  .. (rcptto);
+  \draw (130.5bp,324bp) node {r250};
+  \draw [->] (invalid) ..controls (142.47bp,14.966bp) and (147bp,13.227bp)  .. (147bp,10bp) .. controls (147bp,9.1934bp) and (146.72bp,8.4797bp)  .. (invalid);
+  \draw (170bp,10bp) node {timeout};
+  \draw [->] (data) ..controls (150.76bp,218.03bp) and (156.18bp,206.6bp)  .. (163bp,198bp) .. controls (163.47bp,197.41bp) and (163.96bp,196.83bp)  .. (datastr);
+  \draw (178.5bp,208bp) node {r354};
+  \draw [->] (done) ..controls (185.45bp,49.43bp) and (157.47bp,34.163bp)  .. (invalid);
+  \draw (205bp,38bp) node {timeout};
+  \draw [->] (rcptto) ..controls (121.29bp,261.87bp) and (128.45bp,205.91bp)  .. (104bp,170bp) .. controls (99.525bp,163.43bp) and (92.18bp,168.76bp)  .. (88bp,162bp) .. controls (83.327bp,154.44bp) and (87.117bp,150.84bp)  .. (88bp,142bp) .. controls (92.04bp,101.54bp) and (103.18bp,55.148bp)  .. (invalid);
+  \draw (111bp,152bp) node {timeout};
+  \draw [->] (quit) ..controls (198.88bp,104.79bp) and (203.01bp,94.483bp)  .. (done);
+  \draw (222.5bp,94bp) node {r221};
+  \draw [->] (helo) ..controls (167.63bp,407.2bp) and (245bp,401.27bp)  .. (245bp,353bp) .. controls (245bp,353bp) and (245bp,353bp)  .. (245bp,65bp) .. controls (245bp,47.084bp) and (243.2bp,38.919bp)  .. (229bp,28bp) .. controls (216.88bp,18.687bp) and (178.64bp,14.435bp)  .. (invalid);
+  \draw (268bp,208bp) node {timeout};
+%
+\end{tikzpicture}
+% End of code
+
+%
+\end{document}
+%
+
+
+

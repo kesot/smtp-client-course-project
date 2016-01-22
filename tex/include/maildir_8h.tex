@@ -1,0 +1,82 @@
+\hypertarget{maildir_8h}{\subsection{Файл include/maildir.h}
+\label{maildir_8h}\index{include/maildir.\-h@{include/maildir.\-h}}
+}
+
+
+Файл со структурами и функциями для работы с сообщениями  
+
+
+\subsubsection*{Структуры данных}
+\begin{DoxyCompactItemize}
+\item 
+struct \hyperlink{structrcpt}{rcpt}
+\begin{DoxyCompactList}\small\item\em Структура для хранения имени и домена получателя \end{DoxyCompactList}\item 
+struct \hyperlink{structmail}{mail}
+\begin{DoxyCompactList}\small\item\em Структура для хранения писем \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsubsection*{Перечисления}
+\begin{DoxyCompactItemize}
+\item 
+enum {\bfseries maildir\-\_\-dir} \{ \\*
+{\bfseries D\-I\-R\-\_\-\-R\-O\-O\-T}, 
+{\bfseries D\-I\-R\-\_\-\-N\-E\-W}, 
+{\bfseries D\-I\-R\-\_\-\-C\-U\-R}, 
+{\bfseries D\-I\-R\-\_\-\-N\-O\-T\-S\-E\-N\-T}, 
+\\*
+{\bfseries maildir\-\_\-count}
+ \}
+\end{DoxyCompactItemize}
+\subsubsection*{Функции}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{maildir_8h_abbd06722d933d8849bd940ed8056d8e0}{{\bfseries T\-A\-I\-L\-Q\-\_\-\-H\-E\-A\-D} (rcpt\-\_\-list, \hyperlink{structrcpt}{rcpt})}\label{maildir_8h_abbd06722d933d8849bd940ed8056d8e0}
+
+\item 
+\hypertarget{maildir_8h_a421f8811d7be9747f564badf4523a88c}{{\bfseries T\-A\-I\-L\-Q\-\_\-\-H\-E\-A\-D} (mail\-\_\-list, \hyperlink{structmail}{mail})}\label{maildir_8h_a421f8811d7be9747f564badf4523a88c}
+
+\item 
+\hypertarget{maildir_8h_a1e9cbe73bb98af1f8b67d4a428dbb1d3}{int {\bfseries maildir\-\_\-init} ()}\label{maildir_8h_a1e9cbe73bb98af1f8b67d4a428dbb1d3}
+
+\item 
+\hypertarget{maildir_8h_a5a714eaef0349162b8106f58dc8fa241}{int {\bfseries maildir\-\_\-final} ()}\label{maildir_8h_a5a714eaef0349162b8106f58dc8fa241}
+
+\item 
+\hypertarget{maildir_8h_aea5a119f35196c3ea74b9c7a9ec34056}{void {\bfseries free\-\_\-mail} (struct \hyperlink{structmail}{mail} $\ast$m)}\label{maildir_8h_aea5a119f35196c3ea74b9c7a9ec34056}
+
+\item 
+\hypertarget{maildir_8h_a8d846fd3a0e5f094a330c540e45493b3}{void {\bfseries free\-\_\-mail\-\_\-list} (struct mail\-\_\-list $\ast$ml)}\label{maildir_8h_a8d846fd3a0e5f094a330c540e45493b3}
+
+\item 
+\hypertarget{maildir_8h_aa63c3b5e1e9bd42357c62aa6e3b5b7bc}{int {\bfseries new\-\_\-mail\-\_\-exist} ()}\label{maildir_8h_aa63c3b5e1e9bd42357c62aa6e3b5b7bc}
+
+\item 
+\hypertarget{maildir_8h_afecf772b58de12e2a17167438eb988d5}{void {\bfseries move\-\_\-mail} (const char $\ast$filename, maildir\-\_\-dir from\-\_\-dir, maildir\-\_\-dir to\-\_\-dir)}\label{maildir_8h_afecf772b58de12e2a17167438eb988d5}
+
+\item 
+\hypertarget{maildir_8h_a25a46de8004b6c7eb1683230d60f53ce}{void {\bfseries copy\-\_\-mail} (const char $\ast$filename, maildir\-\_\-dir from\-\_\-dir, maildir\-\_\-dir to\-\_\-dir)}\label{maildir_8h_a25a46de8004b6c7eb1683230d60f53ce}
+
+\item 
+\hypertarget{maildir_8h_a400c412a291331a3564e5c8397a63cff}{void {\bfseries delete\-\_\-mail} (const char $\ast$filename, maildir\-\_\-dir dir)}\label{maildir_8h_a400c412a291331a3564e5c8397a63cff}
+
+\item 
+\hypertarget{maildir_8h_a6d909dab94890273728a5cc9966f9cb6}{int {\bfseries filter\-\_\-my\-\_\-mail} (struct mail\-\_\-list $\ast$ml)}\label{maildir_8h_a6d909dab94890273728a5cc9966f9cb6}
+
+\item 
+\hypertarget{maildir_8h_a33a565cf3328ab035bc1099c040f1292}{int {\bfseries read\-\_\-all\-\_\-mail} (struct mail\-\_\-list $\ast$ml)}\label{maildir_8h_a33a565cf3328ab035bc1099c040f1292}
+
+\item 
+\hypertarget{maildir_8h_a9bc971a3c04578afe451897ccbab946a}{struct \hyperlink{structmail}{mail} $\ast$ {\bfseries read\-\_\-mail\-\_\-file} (const char $\ast$filename)}\label{maildir_8h_a9bc971a3c04578afe451897ccbab946a}
+
+\item 
+\hypertarget{maildir_8h_a1e6e8ef62eb133f023d676889804bbca}{int {\bfseries read\-\_\-mail\-\_\-from} (F\-I\-L\-E $\ast$f, struct \hyperlink{structmail}{mail} $\ast$m)}\label{maildir_8h_a1e6e8ef62eb133f023d676889804bbca}
+
+\item 
+\hypertarget{maildir_8h_aefb5606408f4df2065991ac5dc8d03f5}{int {\bfseries read\-\_\-mail\-\_\-to} (F\-I\-L\-E $\ast$f, struct \hyperlink{structmail}{mail} $\ast$m)}\label{maildir_8h_aefb5606408f4df2065991ac5dc8d03f5}
+
+\item 
+\hypertarget{maildir_8h_a86c99727ccc6619cfe2b11a143ac0c53}{int {\bfseries read\-\_\-mail\-\_\-data} (F\-I\-L\-E $\ast$f, struct \hyperlink{structmail}{mail} $\ast$m)}\label{maildir_8h_a86c99727ccc6619cfe2b11a143ac0c53}
+
+\end{DoxyCompactItemize}
+
+
+\subsubsection{Подробное описание}
+Файл со структурами и функциями для работы с сообщениями 

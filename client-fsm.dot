@@ -1,0 +1,22 @@
+digraph test {
+rankdir=TD;
+ranksep=0.1; nodesep=0.1; defaultdist = 0.1; len = 0.1;
+"mailfrom" -> "invalid" [label="timeout"];
+"quit" -> "invalid" [label="timeout"];
+"invalid" -> "invalid" [label="timeout"];
+"init" -> "invalid" [label="timeout"];
+"rcptto" -> "invalid" [label="timeout"];
+"done" -> "invalid" [label="timeout"];
+"helo" -> "invalid" [label="timeout"];
+"data" -> "invalid" [label="timeout"];
+"datastr" -> "invalid" [label="timeout"];
+"quit" -> "done" [label="r221"];
+"rcptto" -> "rcptto" [label="r250"];
+"datastr" -> "mailfrom" [label="r250"];
+"datastr" -> "quit" [label="no mail"];
+"data" -> "datastr" [label="r354"];
+"helo" -> "mailfrom" [label="r250"];
+"mailfrom" -> "rcptto" [label="r250"];
+"init" -> "helo" [label="r220"];
+"rcptto" -> "data" [label="no rcpt"];
+}

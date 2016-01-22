@@ -1,0 +1,37 @@
+autogen definitions fsm;
+
+method  = case;
+type    = reenterant;
+prefix  = smtp_client_fsm;
+cookie  = "void *conn";
+
+/* Состояния init и done уже есть */
+
+
+state = helo,
+        mailfrom,
+        rcptto,
+        data,
+        datastr,
+        quit;
+
+event = r220,
+        r250,
+        r354,
+        r221,
+        no_rcpt,
+        no_mail,
+        timeout;
+
+transition =
+	{ tst = "*";        tev = timeout;  next = invalid;     },
+	{ tst = init;       tev = r220;     next = helo;        },
+	{ tst = helo;       tev = r250;     next = mailfrom;    },
+	{ tst = mailfrom;   tev = r250;     next = rcptto;      },
+	{ tst = rcptto;     tev = r250;		next = rcptto;		},
+	{ tst = rcptto;     tev = no_rcpt;	next = data;		},
+	{ tst = data;       tev = r354;     next = datastr;     },
+/*	{ tst = datastr;    tev = timeout;  next = datastr;     }, */
+	{ tst = datastr;    tev = r250;		next = mailfrom;    },
+	{ tst = datastr;    tev = no_mail;  next = quit;        },
+	{ tst = quit;       tev = r221;     next = done;        };

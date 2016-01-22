@@ -1,0 +1,56 @@
+\hypertarget{regexp_8c}{\subsection{Файл src/regexp.c}
+\label{regexp_8c}\index{src/regexp.\-c@{src/regexp.\-c}}
+}
+\subsubsection*{Функции}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{regexp_8c_a1db778a5f0510408415892152849382d}{int {\bfseries re\-\_\-compile} (smtp\-\_\-re\-\_\-name re\-\_\-name)}\label{regexp_8c_a1db778a5f0510408415892152849382d}
+
+\item 
+\hypertarget{regexp_8c_af03d1917f5111419023312ca87f591e4}{int {\bfseries re\-\_\-init} ()}\label{regexp_8c_af03d1917f5111419023312ca87f591e4}
+
+\item 
+\hypertarget{regexp_8c_a0402ef7f9c2986c04a9b95ab60c600ab}{int {\bfseries re\-\_\-final} ()}\label{regexp_8c_a0402ef7f9c2986c04a9b95ab60c600ab}
+
+\item 
+\hypertarget{regexp_8c_ac0411120aa28c139a67e654d83fef4c8}{int {\bfseries re\-\_\-match} (smtp\-\_\-re\-\_\-name re\-\_\-name, char $\ast$str, int length)}\label{regexp_8c_ac0411120aa28c139a67e654d83fef4c8}
+
+\item 
+\hypertarget{regexp_8c_a8460a3cb7ca02ba1452bba0907cda6ac}{char $\ast$ {\bfseries re\-\_\-match\-\_\-and\-\_\-alloc\-\_\-substring} (smtp\-\_\-re\-\_\-name re\-\_\-name, char $\ast$str, int length)}\label{regexp_8c_a8460a3cb7ca02ba1452bba0907cda6ac}
+
+\item 
+\hypertarget{regexp_8c_a27c200d498054a7b273f7c15b8d297a3}{int {\bfseries re\-\_\-match\-\_\-and\-\_\-fill\-\_\-substring} (smtp\-\_\-re\-\_\-name re\-\_\-name, char $\ast$str, int length, char $\ast$substr)}\label{regexp_8c_a27c200d498054a7b273f7c15b8d297a3}
+
+\item 
+\hypertarget{regexp_8c_afb3617da73bc94057e406839536fe46e}{smtp\-\_\-re\-\_\-name {\bfseries re\-\_\-match\-\_\-any} (char $\ast$str, int length)}\label{regexp_8c_afb3617da73bc94057e406839536fe46e}
+
+\end{DoxyCompactItemize}
+\subsubsection*{Переменные}
+\begin{DoxyCompactItemize}
+\item 
+const char $\ast$ {\bfseries patterns} \mbox{[}smtp\-\_\-re\-\_\-count\mbox{]}
+\item 
+\hypertarget{regexp_8c_aac14b7e1824a24aca3163d9faa869227}{pcre $\ast$ {\bfseries smtp\-\_\-re} \mbox{[}smtp\-\_\-re\-\_\-count\mbox{]}}\label{regexp_8c_aac14b7e1824a24aca3163d9faa869227}
+
+\end{DoxyCompactItemize}
+
+
+\subsubsection{Переменные}
+\hypertarget{regexp_8c_a4c06554effe95d049c24c9d3c191af59}{\index{regexp.\-c@{regexp.\-c}!patterns@{patterns}}
+\index{patterns@{patterns}!regexp.c@{regexp.\-c}}
+\paragraph[{patterns}]{\setlength{\rightskip}{0pt plus 5cm}const char$\ast$ patterns\mbox{[}smtp\-\_\-re\-\_\-count\mbox{]}}}\label{regexp_8c_a4c06554effe95d049c24c9d3c191af59}
+{\bfseries Инициализатор}
+\begin{DoxyCode}
+= \{
+        \textcolor{stringliteral}{"^220(?:\(\backslash\)\(\backslash\)s+.+)?\(\backslash\)\(\backslash\)r\(\backslash\)\(\backslash\)n"},
+        \textcolor{stringliteral}{"^221(?:\(\backslash\)\(\backslash\)s+.+)?\(\backslash\)\(\backslash\)r\(\backslash\)\(\backslash\)n"},
+        \textcolor{stringliteral}{"^250(?:\(\backslash\)\(\backslash\)s+.+)?\(\backslash\)\(\backslash\)r\(\backslash\)\(\backslash\)n"},
+        \textcolor{stringliteral}{"^354(?:\(\backslash\)\(\backslash\)s+.+)?\(\backslash\)\(\backslash\)r\(\backslash\)\(\backslash\)n"},
+        \textcolor{stringliteral}{"^DATA\(\backslash\)\(\backslash\)r\(\backslash\)\(\backslash\)n"},
+        \textcolor{stringliteral}{"^MAIL FROM:\(\backslash\)\(\backslash\)s*<.+>\(\backslash\)\(\backslash\)r\(\backslash\)\(\backslash\)n"},
+        \textcolor{stringliteral}{"^RCPT TO:\(\backslash\)\(\backslash\)s*<(.+@.+)>\(\backslash\)\(\backslash\)r\(\backslash\)\(\backslash\)n"},
+        \textcolor{stringliteral}{"^RCPT TO:\(\backslash\)\(\backslash\)s*<.+@(.+)>\(\backslash\)\(\backslash\)r\(\backslash\)\(\backslash\)n"},
+        \textcolor{stringliteral}{"MX\(\backslash\)\(\backslash\)s+\(\backslash\)\(\backslash\)d+\(\backslash\)\(\backslash\)s*(.+)\(\backslash\)\(\backslash\).$"},
+        \textcolor{stringliteral}{"MX\(\backslash\)\(\backslash\)s+(\(\backslash\)\(\backslash\)d+)\(\backslash\)\(\backslash\)s*.+\(\backslash\)\(\backslash\).$"}
+\}
+\end{DoxyCode}

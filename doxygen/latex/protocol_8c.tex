@@ -1,0 +1,116 @@
+\hypertarget{protocol_8c}{\subsection{Файл src/protocol.c}
+\label{protocol_8c}\index{src/protocol.\-c@{src/protocol.\-c}}
+}
+
+
+Файл содержащий структуры и функции для работы по протоколу S\-M\-T\-P.  
+
+
+\subsubsection*{Функции}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{protocol_8c_a21cc93a4b19d0b161ab7ddc0db847768}{int \hyperlink{protocol_8c_a21cc93a4b19d0b161ab7ddc0db847768}{smtp\-\_\-client\-\_\-loop} ()}\label{protocol_8c_a21cc93a4b19d0b161ab7ddc0db847768}
+
+\begin{DoxyCompactList}\small\item\em Основная функция, которая мониторит директорию с почтой, чтобы ее отправить \end{DoxyCompactList}\item 
+\hypertarget{protocol_8c_a9bd22b876331743b1b7ea35bc202ac3d}{int \hyperlink{protocol_8c_a9bd22b876331743b1b7ea35bc202ac3d}{conn\-\_\-init} ()}\label{protocol_8c_a9bd22b876331743b1b7ea35bc202ac3d}
+
+\begin{DoxyCompactList}\small\item\em Initialize structures for connections with several S\-M\-T\-P servers. \end{DoxyCompactList}\item 
+\hypertarget{protocol_8c_a7c7fde4f333bb1f781b2a90eeb37d8e6}{int {\bfseries free\-\_\-connection} (struct \hyperlink{structmx__conn}{mx\-\_\-conn} $\ast$conn)}\label{protocol_8c_a7c7fde4f333bb1f781b2a90eeb37d8e6}
+
+\item 
+\hypertarget{protocol_8c_aa456fbb7e347e4f89e2453d4d3325cdf}{int {\bfseries free\-\_\-domain} (struct \hyperlink{structdomain}{domain} $\ast$d)}\label{protocol_8c_aa456fbb7e347e4f89e2453d4d3325cdf}
+
+\item 
+\hypertarget{protocol_8c_ae6de6df669448d5fe834197125c63018}{int \hyperlink{protocol_8c_ae6de6df669448d5fe834197125c63018}{conn\-\_\-final} ()}\label{protocol_8c_ae6de6df669448d5fe834197125c63018}
+
+\begin{DoxyCompactList}\small\item\em Frees all structures used in mail transfer. \end{DoxyCompactList}\item 
+void \hyperlink{protocol_8c_a7db98c4c210ef2fc7f86e5c01cd692ab}{domain\-\_\-add} (struct domain\-\_\-set $\ast$domains, char $\ast$new\-\_\-domain\-\_\-name)
+\begin{DoxyCompactList}\small\item\em Adds another domain into domain set if it is not present there and if it is not local domain (M\-Y\-\_\-\-D\-O\-M\-A\-I\-N in \hyperlink{maildir_8h}{maildir.\-h}) \end{DoxyCompactList}\item 
+\hypertarget{protocol_8c_a2678d96b53074a15c6b7ada9fd7e274b}{int {\bfseries rcpt\-\_\-is\-\_\-from\-\_\-domain} (struct \hyperlink{structrcpt}{rcpt} $\ast$r, struct \hyperlink{structdomain}{domain} $\ast$d)}\label{protocol_8c_a2678d96b53074a15c6b7ada9fd7e274b}
+
+\item 
+\hypertarget{protocol_8c_a3e6be25d869e115193d1b0d5cde9ad07}{int {\bfseries mail\-\_\-has\-\_\-rcpts\-\_\-from\-\_\-domain} (struct \hyperlink{structmail}{mail} $\ast$m, struct \hyperlink{structdomain}{domain} $\ast$d)}\label{protocol_8c_a3e6be25d869e115193d1b0d5cde9ad07}
+
+\item 
+\hypertarget{protocol_8c_a52d095a5c787424e1ac677c95f7d09f6}{int {\bfseries connect\-\_\-with\-\_\-timeout} (int sock, struct addrinfo $\ast$addr, int ms)}\label{protocol_8c_a52d095a5c787424e1ac677c95f7d09f6}
+
+\item 
+\hypertarget{protocol_8c_a7d17f0cebbce6bb33e6971fb50381de1}{int {\bfseries connect\-\_\-to\-\_\-any\-\_\-with\-\_\-timeout} (struct addrinfo $\ast$info, int ms)}\label{protocol_8c_a7d17f0cebbce6bb33e6971fb50381de1}
+
+\item 
+\hypertarget{protocol_8c_a25299c3335401ec40597d96a2df0bcbc}{struct \hyperlink{structmx__conn}{mx\-\_\-conn} $\ast$ {\bfseries create\-\_\-connection} (struct \hyperlink{structdomain}{domain} $\ast$dom)}\label{protocol_8c_a25299c3335401ec40597d96a2df0bcbc}
+
+\item 
+\hypertarget{protocol_8c_a9ed99410a3642cb510821f00078e836c}{int {\bfseries check\-\_\-dns} (char $\ast$d, char $\ast$output\-\_\-address)}\label{protocol_8c_a9ed99410a3642cb510821f00078e836c}
+
+\item 
+\hypertarget{protocol_8c_a001371cf331cd6ea30938cf006b8d3da}{struct \hyperlink{structmx__conn}{mx\-\_\-conn} $\ast$ {\bfseries get\-\_\-conn\-\_\-by\-\_\-socket} (struct mx\-\_\-conn\-\_\-list $\ast$cl, int sock)}\label{protocol_8c_a001371cf331cd6ea30938cf006b8d3da}
+
+\item 
+\hypertarget{protocol_8c_a79bd91966c052d0350da3af975e901f7}{void {\bfseries conn\-\_\-loop} ()}\label{protocol_8c_a79bd91966c052d0350da3af975e901f7}
+
+\item 
+\hypertarget{protocol_8c_a65e032c3158ec7a8f167cd283cbef59c}{int {\bfseries parse\-\_\-response} (struct \hyperlink{structmx__conn}{mx\-\_\-conn} $\ast$conn, char $\ast$str, int length)}\label{protocol_8c_a65e032c3158ec7a8f167cd283cbef59c}
+
+\item 
+\hypertarget{protocol_8c_aafcf74851e51a77bff23afc1736df4b3}{void {\bfseries invalidate\-\_\-connection} (struct \hyperlink{structmx__conn}{mx\-\_\-conn} $\ast$conn)}\label{protocol_8c_aafcf74851e51a77bff23afc1736df4b3}
+
+\item 
+\hypertarget{protocol_8c_a9c29bf6383c84c0b734d3b37144482cc}{int {\bfseries wait\-\_\-for\-\_\-response} ()}\label{protocol_8c_a9c29bf6383c84c0b734d3b37144482cc}
+
+\item 
+\hypertarget{protocol_8c_a6f3dd652b874d52d3ce7f2486540ce48}{int {\bfseries send\-\_\-hello} (struct \hyperlink{structmx__conn}{mx\-\_\-conn} $\ast$conn)}\label{protocol_8c_a6f3dd652b874d52d3ce7f2486540ce48}
+
+\item 
+\hypertarget{protocol_8c_a8b10f5e2dc31026fd53ca4754c9cceea}{int {\bfseries send\-\_\-mailfrom} (struct \hyperlink{structmx__conn}{mx\-\_\-conn} $\ast$conn)}\label{protocol_8c_a8b10f5e2dc31026fd53ca4754c9cceea}
+
+\item 
+\hypertarget{protocol_8c_a0f46c7536b8a12e73de1883b196696b5}{int {\bfseries send\-\_\-rcptto} (struct \hyperlink{structmx__conn}{mx\-\_\-conn} $\ast$conn)}\label{protocol_8c_a0f46c7536b8a12e73de1883b196696b5}
+
+\item 
+\hypertarget{protocol_8c_a7f08ff74d834d14d6aaf5b6d19b99085}{int {\bfseries send\-\_\-data} (struct \hyperlink{structmx__conn}{mx\-\_\-conn} $\ast$conn)}\label{protocol_8c_a7f08ff74d834d14d6aaf5b6d19b99085}
+
+\item 
+\hypertarget{protocol_8c_ac7ec4afbac17b4a2c788784dc68bad09}{int {\bfseries send\-\_\-datastr} (struct \hyperlink{structmx__conn}{mx\-\_\-conn} $\ast$conn)}\label{protocol_8c_ac7ec4afbac17b4a2c788784dc68bad09}
+
+\item 
+\hypertarget{protocol_8c_a248f9650f3fac8b3ac1d8f56f3a43822}{int {\bfseries send\-\_\-quit} (struct \hyperlink{structmx__conn}{mx\-\_\-conn} $\ast$conn)}\label{protocol_8c_a248f9650f3fac8b3ac1d8f56f3a43822}
+
+\end{DoxyCompactItemize}
+\subsubsection*{Переменные}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{protocol_8c_a5a46988ec1b33bf29ebf7913f4d4c90e}{struct mail\-\_\-list $\ast$ {\bfseries mails}}\label{protocol_8c_a5a46988ec1b33bf29ebf7913f4d4c90e}
+
+\item 
+\hypertarget{protocol_8c_ae61ed803d02a9c0cc6e10be186075640}{struct domain\-\_\-set $\ast$ {\bfseries domains}}\label{protocol_8c_ae61ed803d02a9c0cc6e10be186075640}
+
+\item 
+\hypertarget{protocol_8c_a7b789a33522b1f6a352e7681737d7d52}{struct mx\-\_\-conn\-\_\-list $\ast$ {\bfseries connections}}\label{protocol_8c_a7b789a33522b1f6a352e7681737d7d52}
+
+\end{DoxyCompactItemize}
+
+
+\subsubsection{Подробное описание}
+Файл содержащий структуры и функции для работы по протоколу S\-M\-T\-P. 
+
+\subsubsection{Функции}
+\hypertarget{protocol_8c_a7db98c4c210ef2fc7f86e5c01cd692ab}{\index{protocol.\-c@{protocol.\-c}!domain\-\_\-add@{domain\-\_\-add}}
+\index{domain\-\_\-add@{domain\-\_\-add}!protocol.c@{protocol.\-c}}
+\paragraph[{domain\-\_\-add}]{\setlength{\rightskip}{0pt plus 5cm}domain\-\_\-add (
+\begin{DoxyParamCaption}
+\item[{struct domain\-\_\-set $\ast$}]{domains, }
+\item[{char $\ast$}]{new\-\_\-domain\-\_\-name}
+\end{DoxyParamCaption}
+)}}\label{protocol_8c_a7db98c4c210ef2fc7f86e5c01cd692ab}
+
+
+Adds another domain into domain set if it is not present there and if it is not local domain (M\-Y\-\_\-\-D\-O\-M\-A\-I\-N in \hyperlink{maildir_8h}{maildir.\-h}) 
+
+
+\begin{DoxyParams}{Аргументы}
+{\em domains} & -- список доменов куда нужно добавить \\
+\hline
+{\em new\-\_\-domain\-\_\-name} & -- имя домена для добавления \\
+\hline
+\end{DoxyParams}

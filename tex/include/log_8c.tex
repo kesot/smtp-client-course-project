@@ -1,0 +1,50 @@
+\hypertarget{log_8c}{\subsection{Файл src/log.c}
+\label{log_8c}\index{src/log.\-c@{src/log.\-c}}
+}
+
+
+Логирование сообщений в отдельном процессе.  
+
+
+\subsubsection*{Функции}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{log_8c_ad8f00388dc89407e5ab13d2380aa7a26}{int {\bfseries log\-\_\-message} (const char $\ast$buf, char type)}\label{log_8c_ad8f00388dc89407e5ab13d2380aa7a26}
+
+\item 
+\hypertarget{log_8c_a6e0151ead1f53b374b9e80ce4a40a476}{void {\bfseries log\-\_\-loop} ()}\label{log_8c_a6e0151ead1f53b374b9e80ce4a40a476}
+
+\item 
+\hypertarget{log_8c_a850583634650fd49a0a948ad865ee5de}{int {\bfseries fork\-\_\-log} ()}\label{log_8c_a850583634650fd49a0a948ad865ee5de}
+
+\item 
+int \hyperlink{log_8c_afd4cbd54138e6ecd2035d8daf2ae1f2f}{close\-\_\-log} ()
+\item 
+\hypertarget{log_8c_a0ec50d6f386ce634b6269afb7cafc47c}{int {\bfseries send\-\_\-log} (char $\ast$msg)}\label{log_8c_a0ec50d6f386ce634b6269afb7cafc47c}
+
+\end{DoxyCompactItemize}
+\subsubsection*{Переменные}
+\begin{DoxyCompactItemize}
+\item 
+int \hyperlink{log_8c_a9e689815c90dafeed44e7088b718c8ea}{msg\-\_\-sock}
+\end{DoxyCompactItemize}
+
+
+\subsubsection{Подробное описание}
+Логирование сообщений в отдельном процессе. Передача сообщений ведется через пару сокетов. Возможна раскраска сообщений. Три вида сообщений\-: отладка, ошибки, обычные. 
+
+\subsubsection{Функции}
+\hypertarget{log_8c_afd4cbd54138e6ecd2035d8daf2ae1f2f}{\index{log.\-c@{log.\-c}!close\-\_\-log@{close\-\_\-log}}
+\index{close\-\_\-log@{close\-\_\-log}!log.c@{log.\-c}}
+\paragraph[{close\-\_\-log}]{\setlength{\rightskip}{0pt plus 5cm}int close\-\_\-log (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{log_8c_afd4cbd54138e6ecd2035d8daf2ae1f2f}
+Send stop signal to log from main process and wait till log process finishes his work; if log is not forked, function just returns 
+
+\subsubsection{Переменные}
+\hypertarget{log_8c_a9e689815c90dafeed44e7088b718c8ea}{\index{log.\-c@{log.\-c}!msg\-\_\-sock@{msg\-\_\-sock}}
+\index{msg\-\_\-sock@{msg\-\_\-sock}!log.c@{log.\-c}}
+\paragraph[{msg\-\_\-sock}]{\setlength{\rightskip}{0pt plus 5cm}int msg\-\_\-sock}}\label{log_8c_a9e689815c90dafeed44e7088b718c8ea}
+Socket\-: 1) to get messages (from log); 2) to send messages (from main process) 

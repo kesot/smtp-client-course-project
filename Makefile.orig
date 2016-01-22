@@ -1,0 +1,83 @@
+CC = clang
+CFLAGS = -Wall -std=gnu99 -I$(IDIR)
+LIBS = -lpcre -lresolv -lconfig
+
+ODIR = obj
+IDIR = include
+SDIR = src
+
+SRC = $(wildcard $(SDIR)/*.c)
+OBJ = $(patsubst $(SDIR)/%.c,$(ODIR)/%.o,$(SRC))
+DEPS = $(wildcard $(IDIR)/*.h)
+
+
+# Правила сборки (основные)
+client: $(OBJ)
+	$(CC) -o client $(OBJ) $(CFLAGS) $(LIBS)
+
+$(ODIR)/%.o: $(SDIR)/%.c $(DEPS) | $(ODIR)
+	$(CC) -c $< -o $@ $(CFLAGS)
+
+$(ODIR):
+	mkdir -p $(ODIR)
+
+# Следующие два правила - для автомата (костыли~)
+$(SDIR)/client-fsm.c: $(SDIR)/client.def
+	if [ -e $(IDIR)/client-fsm.h ] ; then cp $(IDIR)/client-fsm.h . ; fi
+	if [ -e $(SDIR)/client-fsm.c ] ; then cp $(SDIR)/client-fsm.c . ; fi
+	autogen $(SDIR)/client.def
+	mv client-fsm.h $(IDIR)/client-fsm.h -f
+	mv client-fsm.c $(SDIR)/client-fsm.c -f
+
+$(IDIR)/client-fsm.h: $(SDIR)/client-fsm.c
+
+
+
+# Другие правила (тестирование, проверки, очистка, ...)
+.PHONY: clean cunit create_test_mail
+
+clean:
+	rm -f client
+	rm -f $(ODIR)/*.o
+
+cunit:
+	$(CC) test/unittest.c $(SDIR)/log.c $(SDIR)/client-fsm.c $(SDIR)/protocol.c $(SDIR)/utils.c $(SDIR)/maildir.c $(SDIR)/regexp.c $(SDIR)/key-listener.c $(SDIR)/opts.c -o test/cunit $(CFLAGS) -lcunit $(LIBS)
+	cp test/testmail* ../maildir/new/
+	test/cunit
+	rm -f ../maildir/new/testmail*
+
+valgrind:
+	valgrind --leak-check=full --show-leak-kinds=all ./client
+
+client-fsm:
+	./fsm2dot src/client.def > client-fsm.dot
+	sed -i 's/rankdir=LR;/rankdir=TD;/' client-fsm.dot
+	dot2tex -ftikz --autosize --crop client-fsm.dot > client-fsm.tex
+	pdflatex -interaction=nonstopmode -output-directory ./ client-fsm.tex
+
+create_test_mail:
+	echo -n "MAIL FROM: <origin@example.com>\r\nRCPT TO:<m1@triplenone.com>\r\nRCPT TO:<m1@gmail.com>\r\nDATA\r\nthis is mail #1\r\n.\r\n" > ../maildir/new/`cat /dev/urandom | tr -cd 'a-f0-9' | head -c 32`
+
+	echo -n "MAIL FROM: <origin@example.com>\r\nRCPT TO:<m2@mail.ru>\r\nRCPT TO:<m3@quint.com>\r\nDATA\r\nthis is mail #2\r\n.\r\n" > ../maildir/new/`cat /dev/urandom | tr -cd 'a-f0-9' | head -c 32`
+
+	echo -n "MAIL FROM: <origin@example.com>\r\nRCPT TO:<m2@mail.ru>\r\nRCPT TO:<tykpuk@yandex.ru>\r\nDATA\r\nthis is mail #3\r\n.\r\n" > ../maildir/new/`cat /dev/urandom | tr -cd 'a-f0-9' | head -c 32`
+
+	echo -n "MAIL FROM: <origin@example.com>\r\nRCPT TO:<m1@quint.com>\r\nRCPT TO:<m2@quint.com>\r\nDATA\r\nthis is mail #4\r\n.\r\n" > ../maildir/new/`cat /dev/urandom | tr -cd 'a-f0-9' | head -c 32`
+
+run-smtp-servers:
+	sudo iptables -t nat -F
+	sudo iptables -t nat -A OUTPUT -p tcp -d mx.yandex.ru --dport 25 -j DNAT --to-destination 127.0.0.1:2530
+	sudo iptables -t nat -A OUTPUT -p tcp -d gmail-smtp-in.l.google.com --dport 25 -j DNAT --to-destination 127.0.0.1:2531
+	sudo iptables -t nat -A OUTPUT -p tcp -d mxs.mail.ru   --dport 25 -j DNAT --to-destination 127.0.0.1:2532
+	#~ sudo iptables -t nat -A OUTPUT -p tcp -d mxs.mail.ru   --dport 25 -j DNAT --to-destination 192.168.0.102:2525
+
+	python -m smtpd -n -c DebuggingServer localhost:2530 &# > /dev/null &
+	python -m smtpd -n -c DebuggingServer localhost:2531 &# > /dev/null &
+	python -m smtpd -n -c DebuggingServer localhost:2532 &# > /dev/null &
+
+shut-down-smtp-servers:
+	ps a | grep -P 'python -m smtpd -n -c DebuggingServer localhost:\d{4}' | awk '{print $$1}' | xargs kill
+	sudo iptables -t nat -F
+
+kill-all-clients:
+	ps a | grep -P './client' | awk '{print $$1}' | xargs kill

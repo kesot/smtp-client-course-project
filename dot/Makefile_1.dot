@@ -1,0 +1,25 @@
+digraph test {
+rankdir=LR;
+ranksep=0.1; nodesep=0.1; defaultdist = 0.1; len = 0.1;
+node [shape=ellipse, label="test_client"]; "test-client";
+node [shape=box, label="gcc"]; "test-client-rule";
+"test-client-rule" -> "test-client";
+node [shape=ellipse, label="client-fsm.o"]; "client-fsm-o";
+"client-fsm-o" -> "test-client-rule";
+node [shape=ellipse, label="key-listener.o"]; "key-listener-o";
+"key-listener-o" -> "test-client-rule";
+node [shape=ellipse, label="log.o"]; "log-o";
+"log-o" -> "test-client-rule";
+node [shape=ellipse, label="maildir.o"]; "maildir-o";
+"maildir-o" -> "test-client-rule";
+node [shape=ellipse, label="main.o"]; "main-o";
+"main-o" -> "test-client-rule";
+node [shape=ellipse, label="opts.o"]; "opts-o";
+"opts-o" -> "test-client-rule";
+node [shape=ellipse, label="protocol.o"]; "protocol-o";
+"protocol-o" -> "test-client-rule";
+node [shape=ellipse, label="regexp.o"]; "regexp-o";
+"regexp-o" -> "test-client-rule";
+node [shape=ellipse, label="utils.o"]; "utils-o";
+"utils-o" -> "test-client-rule";
+}

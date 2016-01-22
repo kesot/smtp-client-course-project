@@ -1,0 +1,57 @@
+\hypertarget{regexp_8h}{\subsection{Файл include/regexp.h}
+\label{regexp_8h}\index{include/regexp.\-h@{include/regexp.\-h}}
+}
+
+
+Набор функций для работы с регулярными выражениями. smtp\-\_\-re\-\_\-name перечисляет все представленные регулярные выражения.  
+
+
+\subsubsection*{Перечисления}
+\begin{DoxyCompactItemize}
+\item 
+enum {\bfseries smtp\-\_\-re\-\_\-name} \{ \\*
+{\bfseries r220}, 
+{\bfseries r221}, 
+{\bfseries r250}, 
+{\bfseries r354}, 
+\\*
+{\bfseries R\-E\-\_\-data}, 
+{\bfseries R\-E\-\_\-mail\-\_\-from}, 
+{\bfseries R\-E\-\_\-rcpt\-\_\-to}, 
+{\bfseries R\-E\-\_\-rcpt\-\_\-domain}, 
+\\*
+{\bfseries R\-E\-\_\-mx\-\_\-dns}, 
+{\bfseries R\-E\-\_\-mx\-\_\-dns\-\_\-prio}, 
+{\bfseries smtp\-\_\-re\-\_\-count}
+ \}
+\end{DoxyCompactItemize}
+\subsubsection*{Функции}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{regexp_8h_af03d1917f5111419023312ca87f591e4}{int {\bfseries re\-\_\-init} ()}\label{regexp_8h_af03d1917f5111419023312ca87f591e4}
+
+\item 
+\hypertarget{regexp_8h_a0402ef7f9c2986c04a9b95ab60c600ab}{int {\bfseries re\-\_\-final} ()}\label{regexp_8h_a0402ef7f9c2986c04a9b95ab60c600ab}
+
+\item 
+\hypertarget{regexp_8h_ac0411120aa28c139a67e654d83fef4c8}{int {\bfseries re\-\_\-match} (smtp\-\_\-re\-\_\-name re\-\_\-name, char $\ast$str, int length)}\label{regexp_8h_ac0411120aa28c139a67e654d83fef4c8}
+
+\item 
+\hypertarget{regexp_8h_afb3617da73bc94057e406839536fe46e}{smtp\-\_\-re\-\_\-name {\bfseries re\-\_\-match\-\_\-any} (char $\ast$str, int length)}\label{regexp_8h_afb3617da73bc94057e406839536fe46e}
+
+\item 
+\hypertarget{regexp_8h_a27c200d498054a7b273f7c15b8d297a3}{int {\bfseries re\-\_\-match\-\_\-and\-\_\-fill\-\_\-substring} (smtp\-\_\-re\-\_\-name re\-\_\-name, char $\ast$str, int length, char $\ast$substr)}\label{regexp_8h_a27c200d498054a7b273f7c15b8d297a3}
+
+\item 
+\hypertarget{regexp_8h_a8460a3cb7ca02ba1452bba0907cda6ac}{char $\ast$ {\bfseries re\-\_\-match\-\_\-and\-\_\-alloc\-\_\-substring} (smtp\-\_\-re\-\_\-name re\-\_\-name, char $\ast$str, int length)}\label{regexp_8h_a8460a3cb7ca02ba1452bba0907cda6ac}
+
+\end{DoxyCompactItemize}
+
+
+\subsubsection{Подробное описание}
+Набор функций для работы с регулярными выражениями. smtp\-\_\-re\-\_\-name перечисляет все представленные регулярные выражения. 1) Для инициализации работы необходим вызов функции re\-\_\-init(), а для кооректного завершения -\/ re\-\_\-final().\par
+ 2) re\-\_\-match() возвращает 1, если строка подходит под регулярку, и 0 во всех других случаях.
+
+3) re\-\_\-match\-\_\-any() возвращает номер регулярки, если строка подходит под любую из всех доступных (номер равен номеру первой подошедшей). Если ни одна регулярка не подошла, возвращает -\/1.
+
+4) re\-\_\-match\-\_\-and\-\_\-fill\-\_\-substring() и re\-\_\-match\-\_\-and\-\_\-alloc\-\_\-substring() заполняют или выделяют память под строку, соответствующей первой группе скобок в регулярке соответственно. Если нет соответствия реулярке, то возвращается 0. 

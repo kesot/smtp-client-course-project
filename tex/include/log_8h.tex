@@ -1,0 +1,41 @@
+\hypertarget{log_8h}{\subsection{Файл include/log.h}
+\label{log_8h}\index{include/log.\-h@{include/log.\-h}}
+}
+
+
+Логирование сообщений в отдельном процессе.  
+
+
+\subsubsection*{Функции}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{log_8h_a850583634650fd49a0a948ad865ee5de}{int {\bfseries fork\-\_\-log} ()}\label{log_8h_a850583634650fd49a0a948ad865ee5de}
+
+\item 
+int \hyperlink{log_8h_afd4cbd54138e6ecd2035d8daf2ae1f2f}{close\-\_\-log} ()
+\item 
+\hypertarget{log_8h_a0ec50d6f386ce634b6269afb7cafc47c}{int {\bfseries send\-\_\-log} (char $\ast$msg)}\label{log_8h_a0ec50d6f386ce634b6269afb7cafc47c}
+
+\end{DoxyCompactItemize}
+
+
+\subsubsection{Подробное описание}
+Логирование сообщений в отдельном процессе. Передача сообщений ведется через пару сокетов. Возможна раскраска сообщений. Три вида сообщений\-: отладка, ошибки, обычные.
+
+Есть возможность включения/выключения режима отладки (пропадают все сообщения типа D\-L\-O\-G), работы лога в отдельном процессе (в таком случае все сообщения выводятся сразу же) и раскраски (все цвета не выводятся).
+
+Ограничения\-: 1) первый аргумент любого макроса -\/ строка вида \char`\"{}...\char`\"{}; использование переменных в качестве первого параметра недопустимо; 2) максимальная длина сообщения установлена как M\-A\-X\-\_\-\-L\-O\-G\-\_\-\-M\-E\-S\-S\-A\-G\-E\-\_\-\-S\-I\-Z\-E; 3) для запуска лога следует использовать функцию fork\-\_\-log(), а для завершения -\/ \hyperlink{log_8h_afd4cbd54138e6ecd2035d8daf2ae1f2f}{close\-\_\-log()}; при этом основной процесс будет ожидать, пока не будут выведены все накопленные сообщения. 4) для логирования следует использовать макросы E\-L\-O\-G, D\-L\-O\-G и L\-O\-G; использование функции send\-\_\-log() недопустимо.
+
+
+
+
+
+\subsubsection{Функции}
+\hypertarget{log_8h_afd4cbd54138e6ecd2035d8daf2ae1f2f}{\index{log.\-h@{log.\-h}!close\-\_\-log@{close\-\_\-log}}
+\index{close\-\_\-log@{close\-\_\-log}!log.h@{log.\-h}}
+\paragraph[{close\-\_\-log}]{\setlength{\rightskip}{0pt plus 5cm}int close\-\_\-log (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{log_8h_afd4cbd54138e6ecd2035d8daf2ae1f2f}
+Send stop signal to log from main process and wait till log process finishes his work; if log is not forked, function just returns 

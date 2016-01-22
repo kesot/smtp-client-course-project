@@ -1,0 +1,7 @@
+MAIL FROM: <mail@mail.com>
+RCPT TO: <othermail1@gmail.com>
+RCPT TO: <othermail2@gmail.com>
+RCPT TO: <othermail3@gmail.com>
+DATA
+hello!
+there is no dot here
